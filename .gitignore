@@ -4,11 +4,14 @@
 /run.sh
 *.env
 .env*
+# 但模板文件需入 git(不含真实密钥)
+!.env.local.example
 # 编译产物
 /essaygrader
 # 测试用真实学生作文照片 / 含学生内容的截图(隐私,不公开)
 /testdata/
-/docs/screenshot.png
+# 设计文档 / ADR(内部留存,不推送)
+/docs/
 
 # IDE
 /.idea/

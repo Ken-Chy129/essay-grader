@@ -20,7 +20,7 @@ MODEL=claude-opus-4-8 \
 go run .
 ```
 
-打开 http://localhost:8787(`MODEL` 可省,默认 `claude-opus-4-8`)。
+打开 <http://localhost:8787> 即可。`MODEL` 可省,默认 `claude-opus-4-8`。
 
 ## Docker
 
@@ -37,14 +37,14 @@ docker run -d --name essay-grader \
   essay-grader:latest
 ```
 
-打开 http://localhost:8787。`MODEL` 镜像内置默认 `claude-opus-4-8`,可用 `-e` 覆盖;
+打开 <http://localhost:8787> 。`MODEL` 镜像内置默认 `claude-opus-4-8`,可用 `-e` 覆盖;
 `ANTHROPIC_BASE_URL` / `ANTHROPIC_API_KEY` 必须运行时注入。多阶段构建,运行镜像基于 alpine
 (含 CA 证书以访问网关 HTTPS),静态二进制、无 cgo。
 
 ## 技术
 
 - 纯 Go 标准库,**零外部依赖**;JSON 文件持久化(`data/`),原图存 `data/uploads/`。
-- 模型走 Anthropic 兼容网关(`/v1/messages`),Opus 4.8。架构见 [docs/adr/0001](./docs/adr/0001-two-stage-pipeline.md)。
+- 模型走 Anthropic 兼容网关(`/v1/messages`),Opus 4.8。
 - 前端:后端直接 serve 的单页 vanilla SPA(`web/`),无构建步骤。
 
 ## 环境变量

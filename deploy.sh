@@ -1,11 +1,21 @@
 #!/usr/bin/env bash
 # 一键发布:拉代码 → 构建镜像 → 重启容器。
-# 密钥等环境变量放在同目录、不入 git 的 .env.local(至少需含 ANTHROPIC_API_KEY)。
+# 密钥等环境变量放在同目录、不入 git 的 .env.local(参见 .env.local.example)。
 set -euo pipefail
 cd "$(dirname "$0")"
 
 if [ ! -f .env.local ]; then
-  echo "缺少 .env.local(应包含 ANTHROPIC_API_KEY=sk-...)" >&2
+  echo "缺少 .env.local(参见 .env.local.example)" >&2
+  exit 1
+fi
+
+# 必填变量缺失就在脚本入口快速失败,而不是等容器启动后崩在 log.Fatal。
+missing=()
+for k in ANTHROPIC_API_KEY ANTHROPIC_BASE_URL; do
+  grep -qE "^[[:space:]]*${k}=." .env.local || missing+=("$k")
+done
+if [ "${#missing[@]}" -gt 0 ]; then
+  echo ".env.local 缺少必填变量: ${missing[*]}(参见 .env.local.example)" >&2
   exit 1
 fi
 
