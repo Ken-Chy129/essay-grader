@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>作文批改助手</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand" id="homeLink">📝 作文批改助手</div>
+    <div class="sub">高中语文 · 老师辅助批改</div>
+  </header>
+
+  <main id="app"></main>
+
+  <!-- 新建作业弹窗 -->
+  <div class="modal hidden" id="newModal">
+    <div class="modal-card">
+      <h2>新建作业</h2>
+      <label>作业标题
+        <input id="naTitle" placeholder="如:高三月考作文">
+      </label>
+      <label>作文题目 / 材料 <span class="hint">(可手填,或从图片识别)</span>
+        <textarea id="naPrompt" rows="6" placeholder="粘贴或输入作文题目、材料、写作要求…"></textarea>
+      </label>
+      <div class="row">
+        <label class="file-btn">📷 从题目照片识别
+          <input type="file" id="naPromptImg" accept="image/*" hidden>
+        </label>
+        <span id="naPromptStatus" class="hint"></span>
+      </div>
+      <label>评分参考 <span class="hint">(选填:材料解读 / 立意指导 / 思辨要求,帮 AI 按你的尺度打分)</span>
+        <textarea id="naGuide" rows="5" placeholder="如:本题为情境性材料作文,应有情境意识…;“得/失”为二元思辨,论述不宜割裂…;立意指导:1、得之欣然,失之坦然 2、有所不为才能有所为…"></textarea>
+      </label>
+      <label>满分
+        <input id="naFull" type="number" value="60" min="1" style="width:90px">
+      </label>
+      <div class="dims" id="naDims"></div>
+      <button class="link-btn" id="naAddDim">+ 增加维度</button>
+      <div class="modal-actions">
+        <button class="ghost" id="naCancel">取消</button>
+        <button class="primary" id="naCreate">创建作业</button>
+      </div>
+      <div class="err" id="naErr"></div>
+    </div>
+  </div>
+
+  <!-- 登录页 -->
+  <div class="login-screen hidden" id="loginModal">
+    <div class="login-card">
+      <div class="login-logo">📝</div>
+      <div class="login-brand">作文批改助手</div>
+      <div class="login-sub">高中语文 · 老师辅助批改</div>
+      <input id="loginPw" class="login-input" type="password" placeholder="请输入访问口令" autocomplete="current-password">
+      <button class="login-submit" id="loginBtn">进 入</button>
+      <div class="err" id="loginErr"></div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+data/
+testdata/
+docs/
+run.sh
+*.env
+.git
+README.md
+CONTEXT.md
+essaygrader

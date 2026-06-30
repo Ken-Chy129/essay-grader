@@ -1,0 +1,14 @@
+# 运行时数据(含上传的学生作文与批改结果)
+/data/
+# 本地启动脚本(含 API 密钥,严禁提交)
+/run.sh
+*.env
+.env*
+# 编译产物
+/essaygrader
+# 测试用真实学生作文照片 / 含学生内容的截图(隐私,不公开)
+/testdata/
+/docs/screenshot.png
+
+# IDE
+/.idea/
